@@ -1,14 +1,23 @@
 package com.cg.dto;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+@Entity
+@Table(name="cg_users")
 public class Login {
 
+	@Id
+	@Column(name="user_name", length=20, nullable=false)
 	@NotEmpty(message="enter something.")
-	@Size(min= 5, message="minimum five chars required")
 	private String username;
+	
+	@Column
 	private String password;
 	public Login() {	}
 	public String getUsername() {

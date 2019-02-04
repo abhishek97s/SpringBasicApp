@@ -19,10 +19,10 @@ import com.sun.org.apache.regexp.internal.recompile;
 
 @Controller
 public class LoginController {
-	
+
 	@Autowired
 	ILoginService logService= null;
-		
+
 	public ILoginService getLogService() {
 		return logService;
 	}
@@ -38,21 +38,20 @@ public class LoginController {
 		model.addAttribute("compNameObj", "Capgemini");
 		return "Login";
 	}
-	
+
 	/***********Validate user credentials************/
 	@RequestMapping(value="/ValidateUser", method= RequestMethod.POST)
 	public String validateUserDetails(@ModelAttribute(value="login") @Valid Login lg, BindingResult result, Model model) {
 		if(result.hasErrors()) return "Login";
 		else {
-			Login user= logService.validateUser(lg);
-			if(user!= null) {
+			if(logService.validateUser(lg)!= null) {
 				model.addAttribute("usernameObj", lg.getUsername());
 				return "LoginSuccess";
 			}
-				return "LoginFailure";
+			return "LoginFailure";
 		}
 	}	
-	
+
 	/***********Show Registration Page************/
 	@RequestMapping(value="/ShowRegisterPage",  method= RequestMethod.GET)
 	public String disRegPage(Model model) {
@@ -61,17 +60,25 @@ public class LoginController {
 		cityList.add("Nagpur");
 		cityList.add("Mumbai");
 		cityList.add("Noida");
-		
+
 		ArrayList<String> skillSet= new ArrayList<>();
 		skillSet.add("Java");
 		skillSet.add("PHP");
 		skillSet.add("DotNet");
 		skillSet.add("Oracle");
 		skillSet.add("HTML");
-		
+
 		model.addAttribute("reg", new RegisterDto());
 		model.addAttribute("cityList", cityList);
 		model.addAttribute("skillSet", skillSet);
 		return "Register";
+	}
+
+	/************************InsertUser.obj*******************/
+	@RequestMapping(value="/RegisterSuccess", method=RequestMethod.POST)
+	public String addUserDeatils(@ModelAttribute(value="reg")
+	@Valid RegisterDto rd, BindingResult result, Model model) {
+		model.addAttribute("RegObj", rd);
+		return "RegisterSuccess";
 	}
 }

@@ -21,14 +21,21 @@ public class LoginServiceImpl implements ILoginService{
 
 	@Override
 	public boolean isUserExist(String username) {
-		return false;
+		return logDao.isUserExist(username);
 	}
 
 	@Override
 	public Login validateUser(Login login) {
-		if(login.getUsername().equals("cg")&& login.getPassword().equals("cg"))
+		Login dbUser= logDao.validateUser(login);
+		if(login.getUsername().equals(dbUser.getUsername())&&
+				login.getPassword().equals(dbUser.getPassword())) 
+		{
 			return login;
+		}
+		else
+		{
 		return null;
+		}
 	}
 
 }

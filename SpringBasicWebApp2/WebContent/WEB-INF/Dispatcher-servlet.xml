@@ -37,5 +37,36 @@ http://www.springframework.org/schema/mvc
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:prefix="/WEB-INF/jsp/" 
 		p:suffix=".jsp" />
+		
+		<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
+		<property name="username" value="system" />
+		<property name="password" value="Capgemini@123" />
+	</bean>
+	
+	<!-- Spring way of entity manager factory configuration -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="com.cg.dto" />
+		<property name="persistenceProviderClass"
+			value="org.hibernate.jpa.HibernatePersistenceProvider" />
+		<property name="jpaPropertyMap">
+			<map>
+				<entry key="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
+				<entry key="hibernate.hbm2ddl.auto" value="update" />
+			</map>
+		</property>
+	</bean>
+	
+	<!-- This bean will handle all transaction within an application -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+	<!-- This is required to handle transactions via Annotations like @Transactional -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 </beans>

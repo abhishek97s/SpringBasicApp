@@ -10,7 +10,7 @@
 <body>
 <h3>Give Your Registration Details</h3>
 <form:form 
-	action="" 
+	action="RegisterSuccess.obj" 
 	modelAttribute="reg"
 	method="post">
 	<table>

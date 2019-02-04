@@ -15,6 +15,12 @@
 	method="post">
 	<table>
 	<tr>
+		<td>Username: </td>
+		<td>
+			<form:input path="uname"/><form:errors path="uname"/>
+		</td>
+	</tr>
+	<tr>
 		<td>First Name: </td>
 		<td>
 			<form:input path="firstName"/><form:errors path="firstName"/>
@@ -38,6 +44,18 @@
 		<td>Email: </td>
 		<td>
 			<form:input path="email"/><form:errors path="email"/>
+		</td>
+	</tr>
+	<tr>
+		<td>Password: </td>
+		<td>
+			<form:input path="pwd"/><form:errors path="pwd"/>
+		</td>
+	</tr>
+	<tr>
+		<td>Confirm Password: </td>
+		<td>
+			<form:input path="cnfPwd"/><form:errors path="cnfPwd"/>
 		</td>
 	</tr>
 	<tr>

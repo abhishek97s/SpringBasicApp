@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.stereotype.Repository;
 import com.cg.dto.Login;
+import com.cg.dto.RegisterDto;
 
 @Repository("loginDao")
 @Transactional
@@ -35,4 +36,15 @@ public class LoginDaoImpl implements ILoginDao{
         if (user != null) return user;
         return null;
     }
+
+	@Override
+	public RegisterDto insertUserDetails(RegisterDto userDetails) {
+		Login logObj= new Login();
+		logObj.setUsername(userDetails.getUname());
+		logObj.setPassword(userDetails.getPwd());
+		entityManager.persist(logObj);
+		entityManager.persist(userDetails);
+		RegisterDto rd= entityManager.find(RegisterDto.class, userDetails.getUname());
+		return rd;
+	}
 }

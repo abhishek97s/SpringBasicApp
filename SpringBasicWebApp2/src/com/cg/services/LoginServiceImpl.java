@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cg.dao.ILoginDao;
 import com.cg.dto.Login;
+import com.cg.dto.RegisterDto;
 
 @Service("loginService")
 public class LoginServiceImpl implements ILoginService{
@@ -36,6 +37,11 @@ public class LoginServiceImpl implements ILoginService{
 		{
 		return null;
 		}
+	}
+
+	@Override
+	public RegisterDto insertUserDetails(RegisterDto userDetails) {
+		return logDao.insertUserDetails(userDetails);
 	}
 
 }

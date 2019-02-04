@@ -17,9 +17,10 @@
 	<tr>
 		<td>First Name: </td>
 		<td>
-			<form:input path="firstName"/>
+			<form:input path="firstName"/><form:errors path="firstName"/>
 		</td>
 	</tr>
+	
 	<tr>
 		<td>Last Name: </td>
 		<td>
@@ -36,7 +37,7 @@
 	<tr>
 		<td>Email: </td>
 		<td>
-			<form:input path="email"/>
+			<form:input path="email"/><form:errors path="email"/>
 		</td>
 	</tr>
 	<tr>

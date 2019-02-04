@@ -17,10 +17,11 @@ FirstName:<b> ${regobj.firstName}</b><br/>
 LastName:<b> ${regobj.lastName}</b><br/>
 Email:<b> ${regobj.email}</b><br/>
 SkillSet:<b>
-${regobj.skillSet}
+<c:forEach var="skillSet" items="${regobj.skillSet}">
+    ${ skillSet}
+    </c:forEach>
 </b><br/>
 Gender:<b> ${regobj.gender}</b><br/>
 City:<b> ${regobj.city}</b><br/>
-
 </body>
 </html>

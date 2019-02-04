@@ -2,12 +2,21 @@ package com.cg.dto;
 
 import java.util.Arrays;
 
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class RegisterDto {
+	//@NotEmpty(message="Mandatory")
 	private String uname;
 	private String pwd;
 	private String confirmPassword;
+	@NotEmpty(message="Mandatory")
+	@Pattern(regexp="[A-Z][a-z]*")
 	private String firstName;
 	private String lastName;
+	@Email(message="invalid email id")
 	private String email;
 	private String[] skillSet;
 	private char gender;

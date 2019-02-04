@@ -9,6 +9,8 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.cg.util.MyStringDateUtil;
+
 @Entity
 @Table(name="cg_userDetails")
 public class RegisterDto {
@@ -75,7 +77,7 @@ public class RegisterDto {
 	}
 	public void setSkillSet(String[] skillSet) {
 		this.skillSet = skillSet;
-		this.setSkillSetStr(skillSet.toString());
+		this.setSkillSetStr(MyStringDateUtil.fromArrayToCommaSeparatedString(skillSet));
 	}
 	public char getGender() {
 		return gender;

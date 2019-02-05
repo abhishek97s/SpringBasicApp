@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cg.dao.ILoginDao;
+import com.cg.dao.LoginDaoImpl;
 import com.cg.dto.Login;
 import com.cg.dto.RegisterDto;
 
@@ -50,5 +51,12 @@ public class LoginServiceImpl implements ILoginService{
 	public ArrayList<RegisterDto> getAllUserDetails() {
 		return logDao.getAllUserDetails();
 	}
+
+	@Override
+	public RegisterDto deleteUsers(String uid) {
+		return logDao.deleteUser(uid);
+	}
+
+	
 
 }

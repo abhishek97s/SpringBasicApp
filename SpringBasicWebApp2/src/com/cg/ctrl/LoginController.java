@@ -11,11 +11,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import com.cg.dto.Login;
 import com.cg.dto.RegisterDto;
 import com.cg.services.ILoginService;
 import com.sun.org.apache.regexp.internal.recompile;
+
 
 @Controller
 public class LoginController {
@@ -86,12 +87,13 @@ public class LoginController {
 		return "Register";
 	}
 
-	/************************InsertUser.obj*******************/
+	/************************RegisterSuccess.obj*******************/
 	@RequestMapping(value="/RegisterSuccess", method=RequestMethod.POST)
 	public String addUserDeatils(@ModelAttribute(value="reg")@Valid RegisterDto rd, BindingResult result, Model model) {
 		if(result.hasErrors()) {
 			model.addAttribute("cityList", cityList);
 			model.addAttribute("skillSet", skillSet);
+			model.addAttribute("reg", new RegisterDto());
 			return "Register";
 		}
 		logService.insertUserDetails(rd);
@@ -99,4 +101,19 @@ public class LoginController {
 		model.addAttribute("userListObj", userList);
 		return "RegisterSuccess";
 	}
+	
+	
+	/************************deleteUser.obj*******************/
+	@RequestMapping(value="/DeleteUser", method=RequestMethod.GET)
+	public String deleteUser(@RequestParam(value="uid") String username, Model model) {
+		RegisterDto rd= logService.deleteUsers(username);
+		if (rd!=null) {
+			model.addAttribute("userListObj", logService.getAllUserDetails());
+			model.addAttribute("msgObj", "Data deleted");
+			return "RegisterSuccess";
+		}
+		return "Failure";
+	}
+		
+	
 }

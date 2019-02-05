@@ -10,4 +10,5 @@ public interface ILoginService {
 	public Login validateUser(Login login);
 	public RegisterDto insertUserDetails(RegisterDto userDetails);
 	public ArrayList<RegisterDto> getAllUserDetails();
+	public RegisterDto deleteUsers(String username);
 }

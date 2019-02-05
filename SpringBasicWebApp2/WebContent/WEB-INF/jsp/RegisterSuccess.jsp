@@ -10,7 +10,7 @@
 <title>Register Successful</title>
 </head>
 <body>
-<h2>Data is inserted</h2><br/>
+<h2>${msgObj}</h2><br/>
 <table border="1">
 	<tr>
 		<th>Username</th>
@@ -32,7 +32,7 @@
 				<td>${user.skillSetStr}</td>
 				<td>${user.city}</td>
 				<td>${user.gender}</td>
-				<td><a href="#">Delete</a></td>
+				<td><a href="DeleteUser.obj?uid=${user.uname}">Delete</a></td>
 				<td><a href="#">Update</a></td>
 			</tr>
 	

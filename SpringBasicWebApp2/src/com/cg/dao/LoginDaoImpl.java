@@ -16,10 +16,10 @@ import com.sun.glass.ui.CommonDialogs.Type;
 @Repository("loginDao")
 @Transactional
 public class LoginDaoImpl implements ILoginDao{
-	
+
 	@PersistenceContext
 	EntityManager entityManager= null;
-	
+
 	@Override
 	public boolean isUserExist(String userName) {
 		Login user = entityManager.find(Login.class, userName);
@@ -33,13 +33,13 @@ public class LoginDaoImpl implements ILoginDao{
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
-	
+
 	@Override
-    public Login validateUser(Login login) {
-        Login user = entityManager.find(Login.class, login.getUsername());
-        if (user != null) return user;
-        return null;
-    }
+	public Login validateUser(Login login) {
+		Login user = entityManager.find(Login.class, login.getUsername());
+		if (user != null) return user;
+		return null;
+	}
 
 	@Override
 	public RegisterDto insertUserDetails(RegisterDto userDetails) {
@@ -59,4 +59,14 @@ public class LoginDaoImpl implements ILoginDao{
 		ArrayList<RegisterDto> uList= (ArrayList<RegisterDto>)tq.getResultList();
 		return uList;
 	}
+
+	@Override
+	public RegisterDto deleteUser(String uid) {
+		RegisterDto reg=entityManager.find(RegisterDto.class, uid);
+		entityManager.remove(reg);
+		entityManager.remove(entityManager.find(Login.class, uid));
+		return reg;
+	}
+
+
 }

@@ -1,13 +1,17 @@
 package com.cg.dao;
 
+import java.util.ArrayList;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.stereotype.Repository;
 import com.cg.dto.Login;
 import com.cg.dto.RegisterDto;
+import com.sun.glass.ui.CommonDialogs.Type;
 
 @Repository("loginDao")
 @Transactional
@@ -46,5 +50,13 @@ public class LoginDaoImpl implements ILoginDao{
 		entityManager.persist(userDetails);
 		RegisterDto rd= entityManager.find(RegisterDto.class, userDetails.getUname());
 		return rd;
+	}
+
+	@Override
+	public ArrayList<RegisterDto> getAllUserDetails() {
+		String query= "SELECT reg FROM RegisterDto reg";
+		TypedQuery<RegisterDto> tq= entityManager.createQuery(query, RegisterDto.class);
+		ArrayList<RegisterDto> uList= (ArrayList<RegisterDto>)tq.getResultList();
+		return uList;
 	}
 }

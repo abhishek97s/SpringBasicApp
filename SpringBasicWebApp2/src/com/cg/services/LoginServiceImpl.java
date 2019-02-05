@@ -1,5 +1,7 @@
 package com.cg.services;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cg.dao.ILoginDao;
@@ -42,6 +44,11 @@ public class LoginServiceImpl implements ILoginService{
 	@Override
 	public RegisterDto insertUserDetails(RegisterDto userDetails) {
 		return logDao.insertUserDetails(userDetails);
+	}
+
+	@Override
+	public ArrayList<RegisterDto> getAllUserDetails() {
+		return logDao.getAllUserDetails();
 	}
 
 }

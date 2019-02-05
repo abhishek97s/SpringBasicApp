@@ -94,8 +94,9 @@ public class LoginController {
 			model.addAttribute("skillSet", skillSet);
 			return "Register";
 		}
-		RegisterDto rdto= logService.insertUserDetails(rd);
-		model.addAttribute("RegObj", rdto);
+		logService.insertUserDetails(rd);
+		ArrayList<RegisterDto> userList= logService.getAllUserDetails();
+		model.addAttribute("userListObj", userList);
 		return "RegisterSuccess";
 	}
 }

@@ -11,18 +11,44 @@
 </head>
 <body>
 <h2>Data is inserted</h2><br/>
-<hr/>
-<c:set var="regobj" value="${RegObj}"/>
+<table border="1">
+	<tr>
+		<th>Username</th>
+		<th>First Name	</th>
+		<th>Last Name</th>
+		<th>Email</th>
+		<th>SkillSet</th>
+		<th>City</th>
+		<th>Gender</th>
+		<th>Delete</th>
+		<th>Update</th>
+	</tr>
+		<c:forEach var="user" items="${userListObj}">
+			<tr>
+				<td>${user.uname}</td>
+				<td>${user.firstName}</td>
+				<td>${user.lastName}</td>
+				<td>${user.email}</td>
+				<td>${user.skillSetStr}</td>
+				<td>${user.city}</td>
+				<td>${user.gender}</td>
+				<td><a href="#">Delete</a></td>
+				<td><a href="#">Update</a></td>
+			</tr>
+	
+		</c:forEach>
+</table>
+
+
+
+
+
+<%-- <c:set var="regobj" value="${RegObj}"/>
 FirstName:<b> ${regobj.firstName}</b><br/>
 LastName:<b> ${regobj.lastName}</b><br/>
 Email:<b> ${regobj.email}</b><br/>
-<%-- SkillSet:<b>
-<c:forEach var="skillSet" items="${regobj.skillSet}">
-    ${ skillSet}
-    </c:forEach>
-</b><br/> --%>
 SkillSet:<b>${regobj.skillSetStr}</b>
 Gender:<b> ${regobj.gender}</b><br/>
-City:<b> ${regobj.city}</b><br/>
+City:<b> ${regobj.city}</b><br/> --%>
 </body>
 </html>
